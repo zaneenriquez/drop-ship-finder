@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drop Ship Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f3f3f3;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 400px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        .result {
+            margin-top: 30px;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Drop Ship Origin Finder</h1>
+
+    <form method="POST" action="/trace">
+        <input type="text" name="url" placeholder="Paste product URL here" required />
+        <button type="submit">Trace</button>
+    </form>
+
+    <div class="result">
+        {% if product_title %}
+            <p><strong>Product Title:</strong> {{ product_title }}</p>
+            <p><a href="{{ ali_url }}" target="_blank">🔍 Find on AliExpress</a></p>
+        {% elif error %}
+            <p style="color: red;"><strong>Error:</strong> {{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
